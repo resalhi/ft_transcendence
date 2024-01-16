@@ -1,0 +1,20 @@
+.userModal {
+    max-width: 500px;
+    margin: auto;
+    margin-top: 5rem;
+}
+
+.form2fa-container {
+    background: #0f0f0f;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    padding: 6rem;
+
+}

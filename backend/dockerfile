@@ -1,0 +1,24 @@
+# Use Node.js image
+FROM node:20.5.1
+
+# Set working directory
+WORKDIR /app
+
+# Copy package.json and package-lock.json
+COPY package*.json ./
+
+# Install dependencies
+RUN npm install
+
+# Copy source code
+COPY . .
+
+# Expose port
+EXPOSE 3001
+
+# Run the application
+
+CMD [ "sh","-c","npx prisma db push & npx prisma generate & npx prisma studio & npm run start:dev" ]
+# CMD [ "sh", "-c", "npx prisma generate && npx prisma migrate up --auto && npx prisma studio && npm run start:dev" ]
+# CMD [ "sh", "-c", "npx prisma generate && npx prisma migrate deploy && npx prisma studio && npm run start:dev" ]
+

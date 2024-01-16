@@ -1,0 +1,30 @@
+/* CustomAlert.css */
+.custom-alert {
+    background-color: #4caf50; /* Green background */
+    color: white; /* White text */
+    padding: 15px; /* Some padding */
+    border-radius: 4px; /* Rounded corners */
+    position: fixed; /* Fixed position on top of the screen */
+    bottom: 30px; /* 30px from the bottom */
+    right: 30px; /* 30px from the right */
+  }
+  .custom-alert-content{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .custom-alert-message{
+    margin-right: 10px;
+  }
+
+  .custom-alert-closebtn {
+    margin-left: 10px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+  }

@@ -1,0 +1,113 @@
+
+nav{
+    background-color: #0F0F0F !important;
+    border: none;
+    position: static !important;
+  }
+  
+  aside ul {
+    display: flex;
+    gap: 1rem;
+    flex-direction: column;
+    height: 100%;
+  }
+  aside ul li:last-child{
+    flex: 1;
+  
+  }
+  aside ul li:last-child a{
+    position: absolute;
+    bottom: 30px;
+    width: 90%;
+  
+  }
+  .nav-logo{
+    gap: 1rem;
+  }
+  .nav-logo img{
+    height: 65%;
+    padding-bottom:1rem;
+  
+  }
+  .nav-items{
+    gap: 0.5rem;
+  padding-left: 12rem;
+  }
+  
+  nav .nav-searchForm{
+    width: 50%;
+  
+  }
+  nav .nav-searchForm form {
+      width: 100% !important;
+  }
+  nav .nav-searchForm input{
+    border-radius: 50px;
+    background: #1C1F37;
+    border: none;
+    outline-color: #353854;
+  color: white;
+  }
+  
+  nav .nav-searchForm button{
+    border-radius: 50px;
+    background-color: white;
+    color: black !important;
+    border: none;
+    outline-color: #353854;
+  }
+  
+  nav .nav-searchForm button:hover{
+    background-color: #353854;
+    color: white !important;
+  }
+  
+  
+  @media screen and (min-width:1400px) {
+    .nav-searchForm{
+      width: 34% !important;
+    }
+  }
+  
+  
+  @media screen and (max-width: 640px) {
+    .nav-logo img{
+      display: none;
+    }
+    .nav-items{
+      padding: 0;
+    }
+    nav .nav-searchForm{
+  
+      justify-content: center;
+      align-items: center;
+    }
+    nav .nav-searchForm form {
+      width: 90% !important;
+    }
+    .nav-searchForm button{
+      display: none;
+    }
+  }
+  
+  
+  .nav-avatars_notificationIcon {
+    background: #1C1F37;
+    padding: 0.5rem;
+    color: white;
+    border-radius: 100%;
+  }
+  
+  .nav-avatars_notificationIcon svg{
+  color: white !important;
+  
+  }
+  .notification-badge{
+    background: red;
+    height: 10px;
+    width: 10px;
+    border-radius: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+  }

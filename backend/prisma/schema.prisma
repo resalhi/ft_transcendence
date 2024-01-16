@@ -1,0 +1,175 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                     String           @unique @id @default(uuid()) 
+  username               String           @unique
+  email                  String           
+  isTwofactorsEnabled    Boolean          @default(false)
+  twoFactorsSecret       String?
+  avatarUrl              String
+  status                 String           @default("offline")
+  channel                Channel[]
+  channelMessage         ChannelMessage[]
+  acceptedChannelInvite  acceptedChannelInvite[]
+  channelMemberships     ChannelMembership[]
+  senderInvitesChannel   ChannelInvite[]  @relation("senderInvitesChannel")
+  receiverInvitesChannel ChannelInvite[]  @relation("receiverInvitesChannel")
+  gameInvitesSender      GameInvite[]     @relation("senderInvites")
+  gameInvitesReceived    GameInvite[]     @relation("receiverInvites")
+  sentDirectMessages     DirectMessage[]  @relation("sender")
+  receivedDirectMessages DirectMessage[]  @relation("receiver")
+  friends                Friends[]        @relation("myfriends")
+  friendsOf              Friends[]        @relation("MefriendsOf")
+  senderRequests         FriendRequest[]  @relation("senderRequests")
+  receiverRequests       FriendRequest[]  @relation("receiverRequests")
+  blocker                BlockedUsers[]   @relation("blocker")
+  getblocked             BlockedUsers[]   @relation("Getblocked")
+
+  // -----salhi
+  gamesWon  GameHistory[] @relation("win")
+  gamesLost GameHistory[] @relation("lose")
+  games GameHistory[] @relation("user1")
+  oppenentgamesplayed GameHistory[] @relation("oppenent")
+  total_goals Int @default(0)
+
+}
+
+model Channel {
+  id             String           @id @default(uuid())
+  name           String           
+  createdAt      DateTime         @default(now())
+  updatedAt      DateTime         @updatedAt
+  visibility     String @default("public")
+  role           String @default("owner")
+  password       String?
+  ChannelMessage ChannelMessage[]
+  userId         String
+  user           User             @relation(fields: [userId], references: [id])
+  ChannelInvite  ChannelInvite[]
+  ChannelMembership ChannelMembership[]
+}
+
+model ChannelMessage {
+  id        String   @id @default(uuid())
+  message   String
+  createdAt DateTime @default(now())
+  channelId String
+  channel   Channel  @relation(fields: [channelId], references: [id])
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+}
+
+model acceptedChannelInvite {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  idOfChannel String
+  role      String @default("member")
+  channelId String
+  user      User     @relation(fields: [userId], references: [id])
+  userId    String
+}
+
+model ChannelMembership {
+  id             String   @id @default(uuid())
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  roleId         String   @default("member")
+  isAdmin        Boolean  @default(false)
+  isKicked       Boolean  @default(false)
+  isBanned       Boolean  @default(false)
+  isMuted        Boolean  @default(false)
+  time           DateTime?
+  channelId      String
+  
+  channel        Channel  @relation(fields: [channelId], references: [id])
+  userId         String
+  user           User     @relation(fields: [userId], references: [id])
+}
+
+model ChannelInvite {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  channelId String
+  status    String // "pending", "accepted", "rejected"
+  channel   Channel  @relation(fields: [channelId], references: [id])
+  senderId  String
+  sender    User     @relation("senderInvitesChannel", fields: [senderId], references: [id])
+  receiverId String
+  receiver  User     @relation("receiverInvitesChannel", fields: [receiverId], references: [id])
+}
+
+model DirectMessage {
+  id         String   @id @default(uuid())
+  message    String
+  createdAt  DateTime @default(now())
+  senderId   String
+  sender     User     @relation("sender", fields: [senderId], references: [id])
+  receiverId String
+  receiver   User     @relation("receiver", fields: [receiverId], references: [id])
+}
+
+model FriendRequest {
+  id               String   @id @default(uuid())
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+  status           String // "pending", "accepted", "rejected"
+  senderId         String
+  receiverId       String
+  senderRequests   User     @relation("senderRequests", fields: [senderId], references: [id])
+  receiverRequests User     @relation("receiverRequests", fields: [receiverId], references: [id])
+}
+
+model Friends {
+  id         String   @id @default(uuid())
+  createdAt  DateTime @default(now())
+  status     String // "online", "offline", "in_game"
+  isBlocked  Boolean  @default(false)
+  MyfriendId   String
+  friend     User     @relation("myfriends", fields: [MyfriendId], references: [id])
+  MefriendsOfId     String
+  MefriendOf       User     @relation("MefriendsOf", fields: [MefriendsOfId], references: [id])
+}
+
+model BlockedUsers {
+  id         String   @id @default(uuid())
+  createdAt  DateTime @default(now())
+  blockerUser String
+  getblockedid   String
+  blocker    User     @relation("blocker", fields: [blockerUser], references: [id])
+  getblocked  User     @relation("Getblocked", fields: [getblockedid], references: [id])
+}
+
+// -----salhi
+model GameHistory {
+  id       String    @unique @id @default(uuid()) 
+  userId  String
+  user    User   @relation("user1", fields: [userId], references: [id])
+  oppenentId  String
+  oppenent    User   @relation("oppenent", fields: [oppenentId], references: [id])
+  winnerId String
+  winner   User   @relation("win", fields: [winnerId], references: [id])
+  loserId  String
+  loser    User   @relation("lose", fields: [loserId], references: [id])
+  user_score Int @default(0)
+  opp_score Int  @default(0)
+}
+
+model GameInvite {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  status    String // "pending", "accepted", "rejected"
+  senderId  String
+  sender    User     @relation("senderInvites", fields: [senderId], references: [id])
+  receiverId String
+  receiver  User     @relation("receiverInvites", fields: [receiverId], references: [id])
+}

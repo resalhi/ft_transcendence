@@ -1,0 +1,24 @@
+/* Score.css */
+.score-bar {
+    display: flex;
+    justify-content: space-between;
+    background-color: #d3cfd8;
+    height: 70px;
+    width: 100%;
+    position: relative;
+  }
+  
+  .left-score,
+  .right-score {
+    font-size: 49px;
+    color: black;
+  }
+  
+  /* .left-score {
+    left: 5%;
+  }
+  
+  .right-score {
+    right: 5%;
+  } */
+  

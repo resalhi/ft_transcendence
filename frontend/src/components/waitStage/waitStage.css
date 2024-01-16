@@ -1,0 +1,21 @@
+.waiting-stage {
+    background-color: #3b3c3d;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: white;
+    font-size: 24px;
+  }
+  
+  /* .waiting-stage p {
+    margin-bottom: 20px;
+  }
+  
+  .waiting-stage img {
+    width: 150px;
+    height: auto;
+    margin-bottom: 20px;
+  } */
+
+  

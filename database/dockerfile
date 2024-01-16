@@ -1,0 +1,7 @@
+# Use the official PostgreSQL image
+FROM postgres:13
+
+# Set environment variables (these can be overridden)
+ENV POSTGRES_USER=postgres
+ENV POSTGRES_PASSWORD=123
+ENV POSTGRES_DB=nest

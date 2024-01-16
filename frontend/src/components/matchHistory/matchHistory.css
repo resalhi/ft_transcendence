@@ -1,0 +1,33 @@
+/* MatchHistory.css */
+.matchHistory {
+    background-color: #141627;
+    opacity: 0.75;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    height: auto;
+    grid-column: span 1;
+    /* background-image: url('/pi4.png'); */
+    background-size: 136%;
+    background-repeat: no-repeat;
+    height: 400px;
+    overflow-y: auto;
+}
+
+.mhtitle {
+    color: rgb(255, 255, 255);
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    text-align: center;
+  }
+
+.matchHistoryContent {
+    padding: 1.5rem;
+}
+
+.matchHistoryPlaceholder {
+    height: 40px;
+    background-color: #2c0346;
+    opacity: 0.5;
+    border-radius: 0.25rem;
+}

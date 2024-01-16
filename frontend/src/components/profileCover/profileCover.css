@@ -1,0 +1,101 @@
+/* shaed style  */
+.profile-avatar p {
+    color: white;
+}
+
+.profileCover {
+    background-color: #141627;
+    box-shadow: -2px 5px 19px 0px rgba(0, 0, 0, 0.75);
+    -webkit-box-shadow: -2px 5px 19px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: -2px 5px 19px 0px rgba(0, 0, 0, 0.75);
+}
+.profile-items{
+    gap: 1.5rem;
+    min-height: 200px;
+}
+
+.setting-icon{
+    height: 30px !important;
+    cursor: pointer;
+}
+/* style for desktop  */
+@media screen and (min-width:1000px) {
+    .profileCover img {
+        height: 15rem;
+    }
+
+    .profile-items {
+        flex-direction: row !important;
+        flex-direction: row;
+
+    }
+
+    .profile-items .profile-avatar {
+        align-self: start;
+        width: 21%;
+        text-align: center;
+        color: white;
+       
+    }
+
+
+    .profile-avatar img {
+        width: 100px;
+        height: 100px;
+    }
+
+
+    .profile-scors {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 4rem;
+    }
+
+
+    .add-friend-btn {
+        width: 20%;
+    }
+}
+/* style for mobile  */
+
+@media screen and (max-width:760px) {
+
+.profile-scors{
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+}
+.invite-btns{
+    display: flex;
+    gap: 1rem;
+  }
+}
+
+.profile-scores_item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    gap: 10px;
+    height: 30px;
+    color: white;
+    font-size: 1rem;
+}
+
+.profile-scores_item span {
+    color: white;
+}
+
+.add-friend-btn {
+    background-color: #ED4C5C;
+}
+
+.profile-scors img {
+    height: 40px;
+    width: 40px;
+   
+}
+.profileCover .profile_cover {
+    height: 12rem;
+}

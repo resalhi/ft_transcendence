@@ -1,0 +1,49 @@
+version: '3.8'
+services:
+  postgres:
+    build: ./database
+    container_name: postgres
+    ports:
+      - 5432:5432
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    
+  backend:
+    build: ./backend
+    container_name: backend
+    ports:
+      - 3001:3001
+      - 5555:5555
+    depends_on:
+      - postgres
+    env_file:
+      - ./backend/.env
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+
+  frontend:
+    build: ./frontend
+    container_name: frontend
+    ports:
+      - 3000:3000
+    depends_on:
+      - backend
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+      
+volumes:
+  postgres_data:
+
+# version: '3.1'
+# services:
+#   db:
+#     image: postgres
+#     restart: always
+#     environment:
+#       POSTGRES_PASSWORD: 123
+#       POSTGRES_USER: user
+#       POSTGRES_DB: db
+#     ports:
+#       - 5432:5432

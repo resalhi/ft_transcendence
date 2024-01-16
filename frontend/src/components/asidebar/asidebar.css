@@ -1,0 +1,29 @@
+
+aside{
+    padding: 0!important;
+  }
+  
+  aside, aside div{
+    background-color: #141627 !important;
+    border: none
+  }
+  
+  aside ul a{
+    color: white !important;
+  }
+  aside ul li a:hover{
+    background-color: #353854 !important;
+    color: black;
+  }
+  
+  .logo-container{
+    background: aquamarine;
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2rem;
+  }
+  
+  
+  
